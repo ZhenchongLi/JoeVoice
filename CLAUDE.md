@@ -87,3 +87,18 @@ JoeVoice is a native macOS voice-to-text application built with SwiftUI. The app
 
 ### Note on Project Structure
 The main source code is in the `JoeVoice/` directory, aligned with the repository and target naming.
+
+## Development Workflow
+
+When encountering issues or implementing new features, follow this development workflow:
+
+1. **Create an Issue**: Document the problem or feature request in GitHub Issues
+2. **Create a Branch**: Create a fix or feature branch from main
+   ```bash
+   git checkout -b fix/issue-name
+   # or
+   git checkout -b feature/feature-name
+   ```
+3. **Submit Pull Request**: Submit code changes through a pull request for review
+4. **Merge to Main**: After approval, merge the pull request to main branch
+5. **Release**: Create and publish a release with the updated code
