@@ -23,7 +23,7 @@ This will create the XCFramework at `build-apple/whisper.xcframework`.
 
 1. Clone the JoeVoice repository:
 ```bash
-git clone https://github.com/Beingpax/JoeVoice.git
+git clone https://github.com/ZhenchongLi/JoeVoice.git
 cd JoeVoice
 ```
 
@@ -63,4 +63,4 @@ If you encounter any build issues:
 4. Verify all dependencies are properly installed
 5. Make sure whisper.xcframework is properly built and linked
 
-For more help, please check the [issues](https://github.com/Beingpax/JoeVoice/issues) section or create a new issue. 
+For more help, please check the [issues](https://github.com/ZhenchongLi/JoeVoice/issues) section or create a new issue.

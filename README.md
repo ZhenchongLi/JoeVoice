@@ -5,9 +5,9 @@
 
   [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
   ![Platform](https://img.shields.io/badge/platform-macOS%2014.0%2B-brightgreen)
-  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Beingpax/JoeVoice)](https://github.com/Beingpax/JoeVoice/releases)
-  ![GitHub all releases](https://img.shields.io/github/downloads/Beingpax/JoeVoice/total)
-  ![GitHub stars](https://img.shields.io/github/stars/Beingpax/JoeVoice?style=social)
+  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZhenchongLi/JoeVoice)](https://github.com/ZhenchongLi/JoeVoice/releases)
+  ![GitHub all releases](https://img.shields.io/github/downloads/ZhenchongLi/JoeVoice/total)
+  ![GitHub stars](https://img.shields.io/github/stars/ZhenchongLi/JoeVoice?style=social)
   <p>
     <a href="https://joevoice.com">Website</a> •
     <a href="https://www.youtube.com/@tryvoiceink">YouTube</a>
@@ -20,11 +20,11 @@
 
 ---
 
-JoeVoice is a native macOS application that transcribes what you say to text almost instantly. You can find all the information and download the app from [here](https://joevoice.com). 
+JoeVoice is a native macOS application that transcribes what you say to text almost instantly. You can find all the information and download the app from [here](https://joevoice.com).
 
 ![JoeVoice Mac App](https://github.com/user-attachments/assets/12367379-83e7-48a6-b52c-4488a6a04bba)
 
-After dedicating the past 5 months to developing this app, I've decided to open source it for the greater good. 
+After dedicating the past 5 months to developing this app, I've decided to open source it for the greater good.
 
 My goal is to make it **the most efficient and privacy-focused voice-to-text solution for macOS** that is a joy to use. While the source code is now open for experienced developers to build and contribute, purchasing a license helps support continued development and gives you access to automatic updates, priority support, and upcoming features.
 
