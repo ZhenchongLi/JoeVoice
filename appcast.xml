@@ -3,23 +3,24 @@
     <channel>
         <title>JoeVoice Releases</title>
         <item>
-            <title>1.57</title>
-            <pubDate>Thu, 18 Sep 2025 12:00:00 +0545</pubDate>
-            <sparkle:version>157</sparkle:version>
-            <sparkle:shortVersionString>1.57</sparkle:shortVersionString>
+            <title>1.0.0</title>
+            <pubDate>Thu, 26 Sep 2025 12:00:00 +0000</pubDate>
+            <sparkle:version>100</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
 
-                <h3>What's New in Version 1.57</h3>
+                <h3>What's New in Version 1.0.0</h3>
                 <ul>
-                    <li>Parakeet v3 now runs 50% faster (requires redownloading approximately 630 MB)</li>
-                    <li>Hover interactions in Enhancement and Power Mode popovers now behave as expected</li>
-                    <li>Clipboard context now integrates correctly thanks to @nulinspiratie</li>
-                    <li>General improvements and bug fixes</li>
+                    <li>Initial release of JoeVoice</li>
+                    <li>Voice-to-text transcription with whisper.cpp</li>
+                    <li>Menu bar integration</li>
+                    <li>Offline processing for privacy</li>
+                    <li>Customizable hotkeys and settings</li>
               </ul>
 
             ]]></description>
-            <enclosure url="https://github.com/ZhenchongLi/JoeVoice/releases/download/v1.57/JoeVoice.dmg" length="9541356" type="application/octet-stream" sparkle:edSignature="sE2LNPXAXjV2MPMNfDVGe9/DHOZAnJY90fwYba+aqm/ibrfxhgJP9K1GBL1IHCSFa5bqZkZggAStAbvsQszhDg=="/>
+            <enclosure url="https://github.com/ZhenchongLi/JoeVoice/releases/download/v1.0.0/JoeVoice.dmg" length="9541356" type="application/octet-stream" sparkle:edSignature="sE2LNPXAXjV2MPMNfDVGe9/DHOZAnJY90fwYba+aqm/ibrfxhgJP9K1GBL1IHCSFa5bqZkZggAStAbvsQszhDg=="/>
         </item>
     </channel>
 </rss>
