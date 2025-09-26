@@ -37,8 +37,8 @@
 	<key>SUEnableInstallerLauncherService</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://zhenchongli.github.io/JoeVoice/appcast.xml</string>
+	<string>https://raw.githubusercontent.com/ZhenchongLi/JoeVoice/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string>rLRdZIjK3gHKfqNlAF9nT7FbjwSvwkJ8BVn0v2mD1Mo=</string>
+	<string>CWylkRT9Fro7r2ZcYcz+fE7SSE1mktvngu0xdGwCJo8=</string>
 </dict>
 </plist>
