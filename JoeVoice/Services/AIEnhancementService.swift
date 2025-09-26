@@ -9,7 +9,7 @@ enum EnhancementPrompt {
 }
 
 class AIEnhancementService: ObservableObject {
-    private let logger = Logger(subsystem: "com.voiceink.enhancement", category: "AIEnhancementService")
+    private let logger = Logger(subsystem: "com.joevoice.enhancement", category: "AIEnhancementService")
 
     @Published var isEnhancementEnabled: Bool {
         didSet {
@@ -213,7 +213,7 @@ class AIEnhancementService: ObservableObject {
 
         let formattedText = "\n<TRANSCRIPT>\n\(text)\n</TRANSCRIPT>"
         let systemMessage = getSystemMessage(for: mode)
-        
+
         // Persist the exact payload being sent (also used for UI)
         await MainActor.run {
             self.lastSystemMessageSent = systemMessage

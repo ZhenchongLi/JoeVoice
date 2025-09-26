@@ -34,7 +34,7 @@ class WhisperState: NSObject, ObservableObject {
             UserDefaults.standard.set(recorderType, forKey: "RecorderType")
         }
     }
-    
+
     @Published var isMiniRecorderVisible = false {
         didSet {
             if isMiniRecorderVisible {
@@ -44,30 +44,30 @@ class WhisperState: NSObject, ObservableObject {
             }
         }
     }
-    
+
     var whisperContext: WhisperContext?
     let recorder = Recorder()
     var recordedFile: URL? = nil
     let whisperPrompt = WhisperPrompt()
-    
+
     // Prompt detection service for trigger word handling
     private let promptDetectionService = PromptDetectionService()
-    
+
     let modelContext: ModelContext
-    
+
     // Transcription Services
     private var localTranscriptionService: LocalTranscriptionService!
     private lazy var cloudTranscriptionService = CloudTranscriptionService()
     private lazy var nativeAppleTranscriptionService = NativeAppleTranscriptionService()
     private lazy var parakeetTranscriptionService = ParakeetTranscriptionService(customModelsDirectory: parakeetModelsDirectory)
-    
+
     private var modelUrl: URL? {
         let possibleURLs = [
             Bundle.main.url(forResource: "ggml-base.en", withExtension: "bin", subdirectory: "Models"),
             Bundle.main.url(forResource: "ggml-base.en", withExtension: "bin"),
             Bundle.main.bundleURL.appendingPathComponent("Models/ggml-base.en.bin")
         ]
-        
+
         for url in possibleURLs {
             if let url = url, FileManager.default.fileExists(atPath: url.path) {
                 return url
@@ -75,46 +75,46 @@ class WhisperState: NSObject, ObservableObject {
         }
         return nil
     }
-    
+
     private enum LoadError: Error {
         case couldNotLocateModel
     }
-    
+
     let modelsDirectory: URL
     let recordingsDirectory: URL
     let parakeetModelsDirectory: URL
     let enhancementService: AIEnhancementService?
     var licenseViewModel: LicenseViewModel
-    let logger = Logger(subsystem: "com.prakashjoshipax.voiceink", category: "WhisperState")
+    let logger = Logger(subsystem: "com.prakashjoshipax.joevoice", category: "WhisperState")
     var notchWindowManager: NotchWindowManager?
     var miniWindowManager: MiniWindowManager?
-    
+
     // For model progress tracking
     @Published var downloadProgress: [String: Double] = [:]
     @Published var isDownloadingParakeet = false
-    
+
     init(modelContext: ModelContext, enhancementService: AIEnhancementService? = nil) {
         self.modelContext = modelContext
         let appSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("com.joeli.JoeVoice")
-        
+
         self.modelsDirectory = appSupportDirectory.appendingPathComponent("WhisperModels")
         self.recordingsDirectory = appSupportDirectory.appendingPathComponent("Recordings")
         self.parakeetModelsDirectory = appSupportDirectory.appendingPathComponent("ParakeetModels")
-        
+
         self.enhancementService = enhancementService
         self.licenseViewModel = LicenseViewModel()
-        
+
         super.init()
-        
+
         // Configure the session manager
         if let enhancementService = enhancementService {
             PowerModeSessionManager.shared.configure(whisperState: self, enhancementService: enhancementService)
         }
-        
+
         // Set the whisperState reference after super.init()
         self.localTranscriptionService = LocalTranscriptionService(modelsDirectory: self.modelsDirectory, whisperState: self)
-        
+
         setupNotifications()
         createModelsDirectoryIfNeeded()
         createRecordingsDirectoryIfNeeded()
@@ -122,7 +122,7 @@ class WhisperState: NSObject, ObservableObject {
         loadCurrentTranscriptionModel()
         refreshAllAvailableModels()
     }
-    
+
     private func createRecordingsDirectoryIfNeeded() {
         do {
             try FileManager.default.createDirectory(at: recordingsDirectory, withIntermediateDirectories: true, attributes: nil)
@@ -130,7 +130,7 @@ class WhisperState: NSObject, ObservableObject {
             logger.error("Error creating recordings directory: \(error.localizedDescription)")
         }
     }
-    
+
     func toggleRecord() async {
         if recordingState == .recording {
             await recorder.stopRecording()
@@ -168,15 +168,15 @@ class WhisperState: NSObject, ObservableObject {
                             let fileName = "\(UUID().uuidString).wav"
                             let permanentURL = self.recordingsDirectory.appendingPathComponent(fileName)
                             self.recordedFile = permanentURL
-        
+
                             try await self.recorder.startRecording(toOutputFile: permanentURL)
-                            
+
                             await MainActor.run {
                                 self.recordingState = .recording
                             }
-                            
+
                             await ActiveWindowService.shared.applyConfigurationForCurrentApp()
-         
+
                             // Only load model if it's a local model and not already loaded
                             if let model = self.currentTranscriptionModel, model.provider == .local {
                                 if let localWhisperModel = self.availableModels.first(where: { $0.name == model.name }),
@@ -190,12 +190,12 @@ class WhisperState: NSObject, ObservableObject {
                                     } else if let model = self.currentTranscriptionModel, model.provider == .parakeet {
             try? await parakeetTranscriptionService.loadModel()
                             }
-        
+
                             if let enhancementService = self.enhancementService,
                                enhancementService.useScreenCaptureContext {
                                 await enhancementService.captureScreenContext()
                             }
-        
+
                         } catch {
                             self.logger.error("❌ Failed to start recording: \(error.localizedDescription)")
                             await NotificationManager.shared.showNotification(title: "Recording failed to start", type: .error)
@@ -210,11 +210,11 @@ class WhisperState: NSObject, ObservableObject {
             }
         }
     }
-    
+
     private func requestRecordPermission(response: @escaping (Bool) -> Void) {
         response(true)
     }
-    
+
     private func transcribeAudio(_ url: URL) async {
         if shouldCancelRecording {
             await MainActor.run {
@@ -223,11 +223,11 @@ class WhisperState: NSObject, ObservableObject {
             await cleanupModelResources()
             return
         }
-        
+
         await MainActor.run {
             recordingState = .transcribing
         }
-        
+
         // Play stop sound when transcription starts with a small delay
         Task {
             let isSystemMuteEnabled = UserDefaults.standard.bool(forKey: "isSystemMuteEnabled")
@@ -238,7 +238,7 @@ class WhisperState: NSObject, ObservableObject {
                 SoundManager.shared.playStopSound()
             }
         }
-        
+
         defer {
             if shouldCancelRecording {
                 Task {
@@ -246,14 +246,14 @@ class WhisperState: NSObject, ObservableObject {
                 }
             }
         }
-        
+
         logger.notice("🔄 Starting transcription...")
-        
+
         do {
             guard let model = currentTranscriptionModel else {
                 throw WhisperStateError.transcriptionFailed
             }
-            
+
             let transcriptionService: TranscriptionService
             switch model.provider {
             case .local:
@@ -270,9 +270,9 @@ class WhisperState: NSObject, ObservableObject {
             var text = try await transcriptionService.transcribe(audioURL: url, model: model)
             text = WhisperHallucinationFilter.filter(text)
             let transcriptionDuration = Date().timeIntervalSince(transcriptionStart)
-            
+
             if await checkCancellationAndCleanup() { return }
-            
+
             text = text.trimmingCharacters(in: .whitespacesAndNewlines)
 
             if UserDefaults.standard.object(forKey: "IsTextFormattingEnabled") as? Bool ?? true {
@@ -282,18 +282,18 @@ class WhisperState: NSObject, ObservableObject {
             if UserDefaults.standard.bool(forKey: "IsWordReplacementEnabled") {
                 text = WordReplacementService.shared.applyReplacements(to: text)
             }
-            
+
             let audioAsset = AVURLAsset(url: url)
             let actualDuration = (try? CMTimeGetSeconds(await audioAsset.load(.duration))) ?? 0.0
             var promptDetectionResult: PromptDetectionService.PromptDetectionResult? = nil
             let originalText = text
-            
+
             if let enhancementService = enhancementService, enhancementService.isConfigured {
                 let detectionResult = promptDetectionService.analyzeText(text, with: enhancementService)
                 promptDetectionResult = detectionResult
                 await promptDetectionService.applyDetectionResult(detectionResult, to: enhancementService)
             }
-            
+
             if let enhancementService = enhancementService,
                enhancementService.isEnhancementEnabled,
                enhancementService.isConfigured {
@@ -333,7 +333,7 @@ class WhisperState: NSObject, ObservableObject {
                     modelContext.insert(newTranscription)
                     try? modelContext.save()
                     NotificationCenter.default.post(name: .transcriptionCreated, object: newTranscription)
-                    
+
                     await MainActor.run {
                         NotificationManager.shared.showNotification(
                             title: "AI enhancement failed",
@@ -354,13 +354,7 @@ class WhisperState: NSObject, ObservableObject {
                 try? modelContext.save()
                 NotificationCenter.default.post(name: .transcriptionCreated, object: newTranscription)
             }
-            
-            if case .trialExpired = licenseViewModel.licenseState {
-                text = """
-                    Your trial has expired. Upgrade to JoeVoice Pro
-                    \n\(text)
-                    """
-            }
+
 
             let shouldAddSpace = UserDefaults.standard.object(forKey: "AppendTrailingSpace") as? Bool ?? true
             if shouldAddSpace {
@@ -380,25 +374,25 @@ class WhisperState: NSObject, ObservableObject {
                     }
                 }
             }
-            
+
             if let result = promptDetectionResult,
                let enhancementService = enhancementService,
                result.shouldEnableAI {
                 await promptDetectionService.restoreOriginalSettings(result, to: enhancementService)
             }
-            
+
             await self.dismissMiniRecorder()
-            
+
         } catch {
             do {
                 let audioAsset = AVURLAsset(url: url)
                 let duration = (try? CMTimeGetSeconds(await audioAsset.load(.duration))) ?? 0.0
-                
+
                 await MainActor.run {
                     let errorDescription = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
                     let recoverySuggestion = (error as? LocalizedError)?.recoverySuggestion ?? ""
                     let fullErrorText = recoverySuggestion.isEmpty ? errorDescription : "\(errorDescription) \(recoverySuggestion)"
-                    
+
                     let failedTranscription = Transcription(
                         text: "Transcription Failed: \(fullErrorText)",
                         duration: duration,
@@ -406,7 +400,7 @@ class WhisperState: NSObject, ObservableObject {
                         audioFileURL: url.absoluteString,
                         promptName: nil
                     )
-                    
+
                     modelContext.insert(failedTranscription)
                     try? modelContext.save()
                     NotificationCenter.default.post(name: .transcriptionCreated, object: failedTranscription)
@@ -414,14 +408,14 @@ class WhisperState: NSObject, ObservableObject {
             } catch {
                 logger.error("❌ Could not create a record for the failed transcription: \(error.localizedDescription)")
             }
-            
+
             await MainActor.run {
                 NotificationManager.shared.showNotification(
                     title: "Transcription Failed",
                     type: .error
                 )
             }
-            
+
             await self.dismissMiniRecorder()
         }
     }
@@ -429,7 +423,7 @@ class WhisperState: NSObject, ObservableObject {
     func getEnhancementService() -> AIEnhancementService? {
         return enhancementService
     }
-    
+
     private func checkCancellationAndCleanup() async -> Bool {
         if shouldCancelRecording {
             await dismissMiniRecorder()
@@ -437,7 +431,7 @@ class WhisperState: NSObject, ObservableObject {
         }
         return false
     }
-    
+
     private func cleanupAndDismiss() async {
         await dismissMiniRecorder()
     }

@@ -18,7 +18,7 @@ fileprivate typealias WhisperVADSegments = OpaquePointer
 
 class VoiceActivityDetector {
     private var vadContext: WhisperVADContext
-    private let logger = Logger(subsystem: "com.voiceink.app", category: "VoiceActivityDetector")
+    private let logger = Logger(subsystem: "com.joevoice.app", category: "VoiceActivityDetector")
 
     init?(modelPath: String) {
         var contextParams = whisper_vad_default_context_params()
@@ -70,7 +70,7 @@ class VoiceActivityDetector {
             // Ensure segments are freed
             whisper_vad_free_segments(segments)
         }
-        
+
         let nSegments = whisper_vad_segments_n_segments(segments)
         logger.notice("Detected \(nSegments) speech segments.")
 

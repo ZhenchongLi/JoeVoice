@@ -13,42 +13,42 @@ class AudioTranscriptionService: ObservableObject {
     private let enhancementService: AIEnhancementService?
     private let whisperState: WhisperState
     private let promptDetectionService = PromptDetectionService()
-    private let logger = Logger(subsystem: "com.prakashjoshipax.voiceink", category: "AudioTranscriptionService")
-    
+    private let logger = Logger(subsystem: "com.prakashjoshipax.joevoice", category: "AudioTranscriptionService")
+
     // Transcription services
     private let localTranscriptionService: LocalTranscriptionService
     private lazy var cloudTranscriptionService = CloudTranscriptionService()
     private lazy var nativeAppleTranscriptionService = NativeAppleTranscriptionService()
     private lazy var parakeetTranscriptionService = ParakeetTranscriptionService(customModelsDirectory: whisperState.parakeetModelsDirectory)
-    
+
     enum TranscriptionError: Error {
         case noAudioFile
         case transcriptionFailed
         case modelNotLoaded
         case invalidAudioFormat
     }
-    
+
     init(modelContext: ModelContext, whisperState: WhisperState) {
         self.modelContext = modelContext
         self.whisperState = whisperState
         self.enhancementService = whisperState.enhancementService
         self.localTranscriptionService = LocalTranscriptionService(modelsDirectory: whisperState.modelsDirectory, whisperState: whisperState)
     }
-    
+
     func retranscribeAudio(from url: URL, using model: any TranscriptionModel) async throws -> Transcription {
         guard FileManager.default.fileExists(atPath: url.path) else {
             throw TranscriptionError.noAudioFile
         }
-        
+
         await MainActor.run {
             isTranscribing = true
         }
-        
+
         do {
             // Delegate transcription to appropriate service
             let transcriptionStart = Date()
             var text: String
-            
+
             switch model.provider {
             case .local:
                 text = try await localTranscriptionService.transcribe(audioURL: url, model: model)
@@ -59,7 +59,7 @@ class AudioTranscriptionService: ObservableObject {
             default: // Cloud models
                 text = try await cloudTranscriptionService.transcribe(audioURL: url, model: model)
             }
-            
+
             let transcriptionDuration = Date().timeIntervalSince(transcriptionStart)
             text = WhisperHallucinationFilter.filter(text)
             text = text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -73,19 +73,19 @@ class AudioTranscriptionService: ObservableObject {
                 text = WordReplacementService.shared.applyReplacements(to: text)
                 logger.notice("✅ Word replacements applied")
             }
-            
+
             // Get audio duration
             let audioAsset = AVURLAsset(url: url)
             let duration = CMTimeGetSeconds(try await audioAsset.load(.duration))
-            
+
             // Create a permanent copy of the audio file
             let recordingsDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
                 .appendingPathComponent("com.joeli.JoeVoice")
                 .appendingPathComponent("Recordings")
-            
+
             let fileName = "retranscribed_\(UUID().uuidString).wav"
             let permanentURL = recordingsDirectory.appendingPathComponent(fileName)
-            
+
             do {
                 try FileManager.default.copyItem(at: url, to: permanentURL)
             } catch {
@@ -93,7 +93,7 @@ class AudioTranscriptionService: ObservableObject {
                 isTranscribing = false
                 throw error
             }
-            
+
             let permanentURLString = permanentURL.absoluteString
 
             // Apply prompt detection for trigger words
@@ -161,11 +161,11 @@ class AudioTranscriptionService: ObservableObject {
                     } catch {
                         logger.error("❌ Failed to save transcription: \(error.localizedDescription)")
                     }
-                    
+
                     await MainActor.run {
                         isTranscribing = false
                     }
-                    
+
                     return newTranscription
                 }
             } else {
@@ -183,11 +183,11 @@ class AudioTranscriptionService: ObservableObject {
                 } catch {
                     logger.error("❌ Failed to save transcription: \(error.localizedDescription)")
                 }
-                
+
                 await MainActor.run {
                     isTranscribing = false
                 }
-                
+
                 return newTranscription
             }
         } catch {

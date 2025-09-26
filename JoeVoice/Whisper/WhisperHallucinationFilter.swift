@@ -2,8 +2,8 @@ import Foundation
 import os
 
 struct WhisperHallucinationFilter {
-    private static let logger = Logger(subsystem: "com.prakashjoshipax.voiceink", category: "WhisperHallucinationFilter")
-    
+    private static let logger = Logger(subsystem: "com.prakashjoshipax.joevoice", category: "WhisperHallucinationFilter")
+
     private static let hallucinationPatterns = [
         #"\[.*?\]"#,     // []
         #"\(.*?\)"#,     // ()
@@ -55,4 +55,4 @@ struct WhisperHallucinationFilter {
 
         return filteredText
     }
-} 
+}

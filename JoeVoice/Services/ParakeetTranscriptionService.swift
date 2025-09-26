@@ -11,8 +11,8 @@ class ParakeetTranscriptionService: TranscriptionService {
     private var vadManager: VadManager?
     private let customModelsDirectory: URL?
     @Published var isModelLoaded = false
-    private let logger = Logger(subsystem: "com.voiceink.app", category: "ParakeetTranscriptionService")
-    
+    private let logger = Logger(subsystem: "com.joevoice.app", category: "ParakeetTranscriptionService")
+
     init(customModelsDirectory: URL? = nil) {
         self.customModelsDirectory = customModelsDirectory
     }
@@ -43,7 +43,7 @@ class ParakeetTranscriptionService: TranscriptionService {
 		guard let asrManager = asrManager else {
 			throw ASRError.notInitialized
 		}
-        
+
         let audioSamples = try readAudioSamples(from: audioURL)
 
         let durationSeconds = Double(audioSamples.count) / 16000.0
@@ -83,13 +83,13 @@ class ParakeetTranscriptionService: TranscriptionService {
         }
 
         let result = try await asrManager.transcribe(speechAudio)
-		
+
 		Task {
 			asrManager.cleanup()
 			isModelLoaded = false
 			logger.notice("🦜 Parakeet ASR models cleaned up from memory")
 		}
-        
+
         let text = result.text
 
         return text
@@ -108,7 +108,7 @@ class ParakeetTranscriptionService: TranscriptionService {
                     return max(-1.0, min(Float(short) / 32767.0, 1.0))
                 }
             }
-            
+
             return floats
 		} catch {
 			throw ASRError.invalidAudioData

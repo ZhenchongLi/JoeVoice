@@ -48,7 +48,7 @@ Get the latest version with a free trial from [joevoice.com](https://joevoice.co
 Alternatively, you can install JoeVoice via `brew`:
 
 ```shell
-brew install --cask voiceink
+brew install --cask joevoice
 ```
 
 ### Build from Source
