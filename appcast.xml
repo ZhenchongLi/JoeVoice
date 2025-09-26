@@ -3,6 +3,24 @@
     <channel>
         <title>JoeVoice Releases</title>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Thu, 26 Sep 2025 14:00:00 +0000</pubDate>
+            <sparkle:version>1020</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+
+                <h3>What's New in Version 1.0.2</h3>
+                <ul>
+                    <li>Added development workflow documentation</li>
+                    <li>Updated support contact information</li>
+                    <li>Improved project documentation</li>
+              </ul>
+
+            ]]></description>
+            <enclosure url="https://github.com/ZhenchongLi/JoeVoice/releases/download/v1.0.2/JoeVoice-1.0.2.dmg" length="0" type="application/octet-stream" sparkle:edSignature=""/>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Thu, 26 Sep 2025 13:00:00 +0000</pubDate>
             <sparkle:version>1010</sparkle:version>
