@@ -1,48 +1,44 @@
 <div align="center">
   <img src="JoeVoice/Assets.xcassets/AppIcon.appiconset/256-mac.png" width="180" height="180" />
   <h1>JoeVoice</h1>
-  <p>Voice to text app for macOS to transcribe what you say to text almost instantly</p>
+  <p>Privacy-focused voice transcription app for macOS with local AI processing</p>
 
   [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
   ![Platform](https://img.shields.io/badge/platform-macOS%2014.0%2B-brightgreen)
   [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZhenchongLi/JoeVoice)](https://github.com/ZhenchongLi/JoeVoice/releases)
   ![GitHub all releases](https://img.shields.io/github/downloads/ZhenchongLi/JoeVoice/total)
   ![GitHub stars](https://img.shields.io/github/stars/ZhenchongLi/JoeVoice?style=social)
-  <p>
-    <a href="https://joevoice.com">Website</a> •
-    <a href="https://www.youtube.com/@tryvoiceink">YouTube</a>
-  </p>
 
-  <a href="https://joevoice.com">
-    <img src="https://img.shields.io/badge/Download%20Now-Latest%20Version-blue?style=for-the-badge&logo=apple" alt="Download JoeVoice" width="250"/>
+  <a href="https://github.com/ZhenchongLi/JoeVoice/releases/latest">
+    <img src="https://img.shields.io/badge/Download%20Now-Latest%20Version-blue?style=for-the-badge&logo=github" alt="Download JoeVoice" width="250"/>
   </a>
 </div>
 
 ---
 
-JoeVoice is a native macOS application that transcribes what you say to text almost instantly. You can find all the information and download the app from [here](https://joevoice.com).
+JoeVoice is a native macOS voice transcription application built for privacy and efficiency. Using local AI models, it converts speech to text with high accuracy while keeping all data on your device. You can download the app from [GitHub Releases](https://github.com/ZhenchongLi/JoeVoice/releases/latest).
 
-![JoeVoice Mac App](https://github.com/user-attachments/assets/12367379-83e7-48a6-b52c-4488a6a04bba)
+![JoeVoice Mac App](https://github.com/user-attachments/assets/new-dashboard-screenshot)
 
 After dedicating the past 5 months to developing this app, I've decided to open source it for the greater good.
 
-My goal is to make it **the most efficient and privacy-focused voice-to-text solution for macOS** that is a joy to use. While the source code is now open for experienced developers to build and contribute, purchasing a license helps support continued development and gives you access to automatic updates, priority support, and upcoming features.
+The goal is to create **the most efficient and privacy-focused voice-to-text solution for macOS** that is intuitive to use. While the source code is available for developers to build and contribute, purchasing the app supports continued development and provides automatic updates, priority support, and access to new features.
 
 ## Features
 
-- 🎙️ **Accurate Transcription**: Local AI models that transcribe your voice to text with 99% accuracy, almost instantly
+- 🎙️ **High-Accuracy Transcription**: Advanced local AI models deliver precise speech-to-text conversion with near-instant processing
 - 🔒 **Privacy First**: 100% offline processing ensures your data never leaves your device
-- ⚡ **Power Mode**: Intelligent app detection automatically applies your perfect pre-configured settings based on the app/ URL you're on
-- 🧠 **Context Aware**: Smart AI that understands your screen content and adapts to the context
+- ⚡ **Power Mode**: Intelligent context detection that automatically applies optimized settings based on your active application or browser URL
+- 🧠 **Context Awareness**: Smart AI adaptation that understands your current environment and adjusts transcription accordingly
 - 🎯 **Global Shortcuts**: Configurable keyboard shortcuts for quick recording and push-to-talk functionality
-- 📝 **Personal Dictionary**: Train the AI to understand your unique terminology with custom words, industry terms, and smart text replacements
-- 🔄 **Smart Modes**: Instantly switch between AI-powered modes optimized for different writing styles and contexts
-- 🤖 **AI Assistant**: Built-in voice assistant mode for a quick chatGPT like conversational assistant
+- 📝 **Personal Dictionary**: Customize transcription accuracy with custom vocabulary, industry terminology, and intelligent text replacements
+- 🔄 **Smart Modes**: Switch between specialized AI modes optimized for different writing styles and use cases
+- 🤖 **AI Assistant**: Integrated voice assistant for ChatGPT-style conversational interactions
 
 ## Get Started
 
 ### Download
-Get the latest version with a free trial from [joevoice.com](https://joevoice.com). Your purchase helps me work on JoeVoice full-time and continuously improve it with new features and updates.
+Download the latest version from [GitHub Releases](https://github.com/ZhenchongLi/JoeVoice/releases/latest). This open-source project welcomes contributions and support for continued development.
 
 #### Homebrew
 Alternatively, you can install JoeVoice via `brew`:
@@ -52,7 +48,7 @@ brew install --cask joevoice
 ```
 
 ### Build from Source
-As an open-source project, you can build JoeVoice yourself by following the instructions in [BUILDING.md](BUILDING.md). However, the compiled version includes additional benefits like automatic updates, priority support via Discord and email, and helps fund ongoing development.
+As an open-source project, you can build JoeVoice from source by following the instructions in [BUILDING.md](BUILDING.md). The official release version provides additional benefits including automatic updates, priority support, and helps fund ongoing development.
 
 ## Requirements
 
