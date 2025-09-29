@@ -9,6 +9,7 @@ enum AIProvider: String, CaseIterable {
     case openAI = "OpenAI"
     case openRouter = "OpenRouter"
     case mistral = "Mistral"
+    case deepseek = "DeepSeek"
     case elevenLabs = "ElevenLabs"
     case deepgram = "Deepgram"
     case ollama = "Ollama"
@@ -31,6 +32,8 @@ enum AIProvider: String, CaseIterable {
             return "https://openrouter.ai/api/v1/chat/completions"
         case .mistral:
             return "https://api.mistral.ai/v1/chat/completions"
+        case .deepseek:
+            return "https://api.deepseek.com/chat/completions"
         case .elevenLabs:
             return "https://api.elevenlabs.io/v1/speech-to-text"
         case .deepgram:
@@ -56,6 +59,8 @@ enum AIProvider: String, CaseIterable {
             return "gpt-5-mini"
         case .mistral:
             return "mistral-large-latest"
+        case .deepseek:
+            return "deepseek-chat"
         case .elevenLabs:
             return "scribe_v1"
         case .deepgram:
@@ -117,6 +122,11 @@ enum AIProvider: String, CaseIterable {
                 "mistral-medium-latest",
                 "mistral-small-latest",
                 "mistral-saba-latest"
+            ]
+        case .deepseek:
+            return [
+                "deepseek-chat",
+                "deepseek-reasoner"
             ]
         case .elevenLabs:
             return ["scribe_v1", "scribe_v1_experimental"]

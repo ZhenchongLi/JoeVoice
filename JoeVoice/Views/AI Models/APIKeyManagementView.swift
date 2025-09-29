@@ -393,7 +393,7 @@ struct APIKeyManagementView: View {
                             Spacer()
                             
                             HStack(spacing: 8) {
-                                Text((aiService.selectedProvider == .groq || aiService.selectedProvider == .gemini || aiService.selectedProvider == .cerebras) ? "Free" : "Paid")
+                                Text((aiService.selectedProvider == .groq || aiService.selectedProvider == .gemini || aiService.selectedProvider == .cerebras || aiService.selectedProvider == .deepseek) ? "Free" : "Paid")
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
                                     .padding(.horizontal, 6)
@@ -414,6 +414,8 @@ struct APIKeyManagementView: View {
                                             URL(string: "https://console.anthropic.com/settings/keys")!
                                         case .mistral:
                                             URL(string: "https://console.mistral.ai/api-keys")!
+                                        case .deepseek:
+                                            URL(string: "https://platform.deepseek.com/api_keys")!
                                         case .elevenLabs:
                                             URL(string: "https://elevenlabs.io/speech-synthesis")!
                                         case .deepgram:
