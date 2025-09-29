@@ -1,33 +1,21 @@
 # Contributing to JoeVoice
 
-First off, thank you for considering contributing to JoeVoice! It's people like you that make JoeVoice such a great tool.
+Thank you for considering contributing to JoeVoice! We welcome contributions that help make voice transcription more accessible and privacy-focused.
 
-## Important Notice About Pull Requests
+## Before You Start
 
-We welcome forks and improvements to JoeVoice! However, please note:
+**Important**: Before starting work on any feature or fix, please open an issue to discuss your proposed changes. This helps ensure:
 
-1. **The acceptance of Pull Requests is solely at the discretion of the project maintainers**
-2. **Before making significant changes or starting work on major features:**
-   - Open an issue to discuss your proposed changes
-   - Wait for maintainer feedback and approval
-   - This helps ensure your time and effort align with the project's direction
-3. **For fundamental or architectural changes:**
-   - Direct consultation with the maintainers is required
-   - These discussions should happen before you start the implementation
+- Your contribution aligns with the project's goals and vision
+- No duplicate work is being done
+- We can provide guidance and support for your contribution
+- The codebase maintains consistency and quality
 
-This policy helps ensure:
-- Your valuable time is spent on changes that align with the project's vision
-- The codebase maintains its consistency and quality
-- We can provide proper guidance and support for your contribution
+### Pull Request Policy
 
-## Important Notice
-
-Before starting work on any new feature or fix, please reach out to us first by opening an issue or discussion. This is crucial because:
-
-1. We want to ensure your contribution aligns with the project's goals and vision
-2. Someone else might already be working on something similar
-3. We might have valuable insights or requirements that could save you time
-4. Your proposed changes might need some adjustments to fit with our roadmap
+1. **All Pull Requests require prior discussion** - Open an issue first
+2. **Maintainer approval is required** before starting significant work
+3. **Architectural changes** require direct consultation with maintainers
 
 ## Code of Conduct
 
@@ -59,45 +47,36 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
 
-### Development Process
+### Development Setup
 
-1. Ensure you have all the requirements installed:
-   - macOS 14.0 or later
-   - Latest version of Xcode
-   - Latest version of Swift
-   - whisper.cpp properly set up
+See [BUILDING.md](BUILDING.md) for detailed setup instructions.
 
-2. Follow our coding standards:
-   - Use Swift style guidelines
-   - Write meaningful commit messages
-   - Include comments where necessary
-   - Add tests for new features
+**Requirements:**
+- macOS 14.0 or later
+- Latest Xcode version
+- whisper.cpp framework properly built and linked
 
-3. Testing:
-   - Run existing tests
-   - Add new tests for new functionality
-   - Ensure all tests pass before submitting PR
-
-## Style Guidelines
+### Development Standards
 
 - Follow Swift style guidelines
-- Use meaningful variable and function names
-- Keep functions focused and concise
-- Comment complex logic
-- Write self-documenting code where possible
+- Write clear, meaningful commit messages
+- Add tests for new functionality
+- Ensure all tests pass before submitting PR
+- Use self-documenting code with comments for complex logic
 
-## Community
+## Getting Help
 
-- Join our discussions
-- Help other contributors
-- Share your ideas
-- Be respectful and constructive
+If you have questions or need clarification:
 
-## Questions?
+1. **Check existing issues** - Your question might already be answered
+2. **Open a new issue** - Use the appropriate issue template
+3. **Start a discussion** - For broader topics or ideas
 
-If you have any questions or need clarification, feel free to:
-1. Open an issue
-2. Start a discussion
-3. Reach out to the maintainers
+## Community Guidelines
 
-Thank you for contributing to JoeVoice! 🎉 
+- Be respectful and constructive in all interactions
+- Help other contributors when possible
+- Share ideas and feedback openly
+- Focus on the project's goal of privacy-focused voice transcription
+
+Thank you for contributing to JoeVoice! 🎙️ 
