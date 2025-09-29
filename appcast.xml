@@ -3,6 +3,27 @@
     <channel>
         <title>JoeVoice Releases</title>
         <item>
+            <title>1.0.3</title>
+            <pubDate>Sun, 29 Sep 2025 08:50:00 +0000</pubDate>
+            <sparkle:version>1030</sparkle:version>
+            <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+
+                <h3>What's New in Version 1.0.3</h3>
+                <ul>
+                    <li><strong>DeepSeek API Support:</strong> Added DeepSeek as a new AI provider option for enhanced transcription processing</li>
+                    <li>Support for deepseek-chat and deepseek-reasoner models</li>
+                    <li>Free tier provider with high-quality AI enhancement capabilities</li>
+                    <li>Enhanced AI provider selection with DeepSeek configuration</li>
+                    <li>Updated API key management UI with DeepSeek-specific settings</li>
+                    <li>OpenAI-compatible API integration for reliable performance</li>
+              </ul>
+
+            ]]></description>
+            <enclosure url="https://github.com/ZhenchongLi/JoeVoice/releases/download/v1.0.3/JoeVoice-1.0.3.dmg" length="9707032" type="application/octet-stream" sparkle:edSignature="+pR5g/+jcx+2CWR/7246EAns0YiEZCHZIJY+I6yDGX1ylLnn+PQCn7Q3olyCd7GJRFCYBBYSRzDXcWH0mCXJDg=="/>
+        </item>
+        <item>
             <title>1.0.2</title>
             <pubDate>Thu, 26 Sep 2025 14:00:00 +0000</pubDate>
             <sparkle:version>1020</sparkle:version>
