@@ -3,6 +3,26 @@
     <channel>
         <title>JoeVoice Releases</title>
         <item>
+            <title>1.0.4</title>
+            <pubDate>Tue, 08 Oct 2025 12:00:00 +0000</pubDate>
+            <sparkle:version>1040</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+
+                <h3>What's New in Version 1.0.4</h3>
+                <ul>
+                    <li><strong>Improved Code Signing Documentation:</strong> Added comprehensive guide for handling provisioning profile expiration</li>
+                    <li>New Code Signing Configuration section explaining entitlements and certificate requirements</li>
+                    <li>Enhanced troubleshooting guide for provisioning profile issues</li>
+                    <li>Fresh provisioning profile (valid for 1 year)</li>
+                    <li>Documentation improvements for development workflow</li>
+              </ul>
+
+            ]]></description>
+            <enclosure url="https://github.com/ZhenchongLi/JoeVoice/releases/download/v1.0.4/JoeVoice-1.0.4.dmg" length="PLACEHOLDER" type="application/octet-stream" sparkle:edSignature="PLACEHOLDER"/>
+        </item>
+        <item>
             <title>1.0.3</title>
             <pubDate>Sun, 29 Sep 2025 08:50:00 +0000</pubDate>
             <sparkle:version>1030</sparkle:version>
