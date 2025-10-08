@@ -40,13 +40,6 @@ The goal is to create **the most efficient and privacy-focused voice-to-text sol
 ### Download
 Download the latest version from [GitHub Releases](https://github.com/ZhenchongLi/JoeVoice/releases/latest). This open-source project welcomes contributions and support for continued development.
 
-#### Homebrew
-Alternatively, you can install JoeVoice via `brew`:
-
-```shell
-brew install --cask joevoice
-```
-
 ### Build from Source
 As an open-source project, you can build JoeVoice from source by following the instructions in [BUILDING.md](BUILDING.md). The official release version provides additional benefits including automatic updates, priority support, and helps fund ongoing development.
 
