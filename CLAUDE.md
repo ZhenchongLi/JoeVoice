@@ -79,6 +79,41 @@ JoeVoice is a native macOS voice-to-text application built with SwiftUI. The app
 - whisper.xcframework must be properly built and linked
 - App requires microphone permissions and accessibility permissions for global hotkeys
 
+### Code Signing Configuration
+
+The project uses automatic code signing with Apple Development certificates for both Debug and Release builds:
+
+**Configuration**:
+- `CODE_SIGN_STYLE = Automatic`
+- `CODE_SIGN_IDENTITY = "Apple Development"`
+- `DEVELOPMENT_TEAM = 56VCH6FL59`
+
+**Required Entitlements**:
+The app requires the following entitlements (defined in `JoeVoice.entitlements`):
+- Audio input access
+- Screen capture
+- Apple Events automation
+- Keychain access groups
+- Network client/server
+- Hardened runtime
+
+**If app won't launch due to provisioning profile expiration**:
+```bash
+# Option 1: Re-sign with your current development identity
+codesign --force --deep --sign - /Applications/JoeVoice.app
+
+# Option 2: Rebuild in Xcode to generate fresh provisioning profile
+# Open project in Xcode and run Cmd+B
+```
+
+**Managing Provisioning Profiles**:
+- Xcode automatically manages provisioning profiles with `CODE_SIGN_STYLE = Automatic`
+- Profiles are typically valid for 1 year from creation date
+- Rebuild the app in Xcode when the provisioning profile expires
+- For distribution, ensure your Apple Developer account is active
+
+**Note**: The entitlements require a valid development certificate - ad-hoc signing is not supported for this app.
+
 ### Privacy and Security
 - 100% offline processing - no data sent to external servers for transcription
 - Optional AI enhancement features can use external services
@@ -277,3 +312,35 @@ If auto-updates fail:
 2. Check file size (length attribute) is correct
 3. Ensure download URL is accessible
 4. Confirm SUPublicEDKey in Info.plist matches the private key used for signing
+
+#### Provisioning Profile Expiration Issues
+If the app won't launch due to expired provisioning profile:
+
+1. **Quick workaround**: Re-sign the installed app
+   ```bash
+   codesign --force --deep --sign - /Applications/JoeVoice.app
+   ```
+   Note: This uses ad-hoc signing which may not work for all entitlements.
+
+2. **Recommended fix**: Rebuild in Xcode to generate fresh provisioning profile
+   ```bash
+   # Open Xcode and rebuild (Cmd+B)
+   # Or use command line:
+   xcodebuild -project JoeVoice.xcodeproj -scheme JoeVoice -configuration Debug clean build
+   ```
+   - Xcode will automatically generate a new provisioning profile
+   - The new profile will be valid for 1 year
+   - Requires valid Apple Developer account
+
+3. **Check your signing configuration**:
+   ```bash
+   # Verify you have a valid development certificate
+   security find-identity -v -p codesigning
+
+   # Should show: "Apple Development: your-email@example.com (...)"
+   ```
+
+4. **If you don't have a valid certificate**:
+   - Log in to your Apple Developer account in Xcode (Preferences > Accounts)
+   - Xcode will automatically download/create necessary certificates
+   - Rebuild the app
